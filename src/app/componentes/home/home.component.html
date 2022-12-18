@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <div>
+      <h3>{{ curso }}</h3>
+      <br />
+      <p>El nombre del profesor es : {{ profesor }}</p>
+    </div>
+  </div>
+
+  <button type="button" (click)="sethabilitar()" class="btn btn-primary my-3">
+    {{ habilitar == true ? "Ocultar" : "Mostrar" }}
+  </button>
+  <div class="card" *ngIf="habilitar">
+    <div class="card-header">Listado de Cursos</div>
+    <div>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let curso of listaCursos">
+          Curso: {{ curso }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" *ngIf="!habilitar">
+    <div class="card-header">
+      <p>No hay datos para mostrar</p>
+    </div>
+  </div>
+  <hr>
+  <div>
+    <app-search-producto (search)="handleSearch($event)"></app-search-producto>
+    <div *ngIf="productos.length>0">
+        <ul *ngFor="let producto of productos">
+          <li >{{ producto.nombre}} </li>
+          <li >{{ producto.precio}} </li>
+          <li >{{ producto.createAt}} </li>
+        </ul>
+    </div>
+    <div *ngIf="productos.length == 0">
+        <p><span>No hay productos disponibles</span></p>
+    </div>
+  </div>
+</div>
+
